@@ -96,23 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
 
-//    if (orderDetails) {
-//        // Dummy data
-//        const dummyId = 1234;
-//        const dummyCost = 4.99;
-//        const dummyBeverage = "Dark Roast";
-//        const dummyCondiments = ["Milk", "Mocha"];
-//
-//        orderDetails.innerHTML = `
-//            <p><strong>Order ID:</strong> ${dummyId}</p>
-//            <p><strong>Beverage:</strong> ${dummyBeverage}</p>
-//            <p><strong>Condiments:</strong> ${dummyCondiments.join(", ")}</p>
-//            <p><strong>Total Cost:</strong> $${dummyCost.toFixed(2)}</p>
-//        `;
-//
-//        localStorage.clear(); // Just cleanup
-//    }
-
 
     const homeButton = document.getElementById("homeButton");
 
