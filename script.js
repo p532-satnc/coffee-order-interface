@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p><strong>Order ID:</strong> ${data.id}</p>
                         <p><strong>Beverage:</strong> ${beverage}</p>
                         <p><strong>Condiments:</strong> ${condiments.length > 0 ? condiments.join(", ") : "None"}</p>
+                        <p><strong>Total Cost:</strong> $${data.cost.toFixed(2)}</p>
                     `;
                     localStorage.clear();
                 })
