@@ -68,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const orderSummary = document.getElementById("orderSummary");
 
+    if (!orderSummary) {
+            console.error("Order summary element not found!");
+            return;
+        }
+
     if (orderSummary) {
         const beverage = localStorage.getItem("beverage") || "No beverage selected";
         const condiments = JSON.parse(localStorage.getItem("condiments") || "[]");
