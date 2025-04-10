@@ -78,30 +78,61 @@ document.addEventListener("DOMContentLoaded", function () {
         const condiments = JSON.parse(localStorage.getItem("condiments") || "[]");
 
 
+//        fetch("https://coffee-order-latest-12y9.onrender.com/orders", {
+//                    method: "POST",
+//                    headers: {
+//                        "Content-Type": "application/json"
+//                    },
+//                    body: JSON.stringify({ beverage, condiments })
+//                })
+//                .then(response => response.json())
+//                .then(data => {
+//                    console.log("Full response from backend:", data);
+//                    orderSummary.innerHTML = `
+//                        <h2>Order Summary</h2>
+//                        <p><strong>Order ID:</strong> ${data.id}</p>
+//                        <p><strong>Beverage:</strong> ${beverage}</p>
+//                        <p><strong>Condiments:</strong> ${condiments.length > 0 ? condiments.join(", ") : "None"}</p>
+//                        <p><strong>Total Cost:</strong> $${data.cost?.toFixed(2) ?? "N/A"}</p>
+//                    `;
+//                    localStorage.clear();
+//                })
+//                .catch(error => {
+//                    orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
+//                    console.error("Error placing order:", error);
+//                });
+//            }
         fetch("https://coffee-order-latest-12y9.onrender.com/orders", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ beverage, condiments })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Full response from backend:", data);
-                    orderSummary.innerHTML = `
-                        <h2>Order Summary</h2>
-                        <p><strong>Order ID:</strong> ${data.id}</p>
-                        <p><strong>Beverage:</strong> ${beverage}</p>
-                        <p><strong>Condiments:</strong> ${condiments.length > 0 ? condiments.join(", ") : "None"}</p>
-                        <p><strong>Total Cost:</strong> $${data.cost.toFixed(2)}</p>
-                    `;
-                    localStorage.clear();
-                })
-                .catch(error => {
-                    orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
-                    console.error("Error placing order:", error);
-                });
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ beverage, condiments })
+        })
+        .then(async (response) => {
+            const text = await response.text();
+            console.log("Raw response text:", text);
+            try {
+                const data = JSON.parse(text);
+                console.log("Parsed JSON:", data);
+                orderSummary.innerHTML = `
+                    <h2>Order Summary</h2>
+                    <p><strong>Order ID:</strong> ${data.id}</p>
+                    <p><strong>Beverage:</strong> ${beverage}</p>
+                    <p><strong>Condiments:</strong> ${condiments.length > 0 ? condiments.join(", ") : "None"}</p>
+                    <p><strong>Total Cost:</strong> $${data.cost?.toFixed(2) ?? "N/A"}</p>
+                `;
+            } catch (err) {
+                console.error("JSON parsing error:", err);
+                orderSummary.innerHTML = `<p style="color: red;">Unexpected response format.</p>`;
             }
+            localStorage.clear();
+        })
+        .catch(error => {
+            orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
+            console.error("Error placing order:", error);
+        });
+
 
 
     const homeButton = document.getElementById("homeButton");
