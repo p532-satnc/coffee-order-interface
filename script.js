@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-    if (orderSummary) {
-        const beverage = localStorage.getItem("beverage") || "No beverage selected";
-        const condiments = JSON.parse(localStorage.getItem("condiments") || "[]");
+
+    const beverage = localStorage.getItem("beverage") || "No beverage selected";
+    const condiments = JSON.parse(localStorage.getItem("condiments") || "[]");
 
 
 //        fetch("https://coffee-order-latest-12y9.onrender.com/orders", {
@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //                    orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
 //                    console.error("Error placing order:", error);
 //                });
-//            }
         fetch("https://coffee-order-latest-12y9.onrender.com/orders", {
             method: "POST",
             headers: {
@@ -132,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
             orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
             console.error("Error placing order:", error);
         });
-    }
+
 
 
     const homeButton = document.getElementById("homeButton");
