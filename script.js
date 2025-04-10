@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    orderDetails.innerHTML = `
+                    orderSummary.innerHTML = `
                         <h2>Order Summary</h2>
                         <p><strong>Order ID:</strong> ${data.id}</p>
                         <p><strong>Beverage:</strong> ${beverage}</p>
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.clear();
                 })
                 .catch(error => {
-                    orderDetails.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
+                    orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
                     console.error("Error placing order:", error);
                 });
             }
