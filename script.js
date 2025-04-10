@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log("Full response from backend:", data);
                     orderSummary.innerHTML = `
                         <h2>Order Summary</h2>
                         <p><strong>Order ID:</strong> ${data.id}</p>
