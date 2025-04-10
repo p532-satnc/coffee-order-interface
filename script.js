@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const condiments = JSON.parse(localStorage.getItem("condiments") || "[]");
 
 
-        fetch("/orders", {
+        fetch("https://coffee-order-latest-12y9.onrender.com/orders", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
