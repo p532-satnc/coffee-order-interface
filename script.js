@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             orderSummary.innerHTML = `<p style="color: red;">Error placing order. Please try again.</p>`;
             console.error("Error placing order:", error);
         });
-
+    }
 
 
     const homeButton = document.getElementById("homeButton");
